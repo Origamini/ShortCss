@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* background: radial-gradient(circle at 50% 50%, gold 1%, black 10%); */
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            position: fixed;
+            font-family: monospace;
+            color: black;
+            font-size: 40px;
+            text-align: center;
+            line-height: 70px;
+        }
+        h1 i{
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    <h1>Hello, My name is Kavitha. I have made this effect with the radial-gradient <i class='bx bx-smile'></i></h1>
+    </div>
+    <script>
+        var timeout;
+        document.body.addEventListener('mousemove', function (dets) {
+            const x = dets.clientX / window.innerWidth * 100;
+            const y = dets.clientY / window.innerHeight * 100;
+            document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, gold 1%, black 10%)`;
+
+            function mouseStopped() {
+                document.body.style.background = "black"
+            }
+            clearTimeout(timeout);
+            timeout = setTimeout(mouseStopped, 1000);
+        });
+
+        document.body.addEventListener('mouseout', () => {
+            document.body.style.background = "black";
+        });
+    </script>
+</body>
+
+</html>
