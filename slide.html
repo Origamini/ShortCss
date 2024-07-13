@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: radial-gradient(#e66465, #9198e5);
+        }
+        .container {
+            height: 60vh;
+            width: 60%;
+            border: 1px solid pink;
+            box-shadow: 0px 0px 15px #e66465;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            font-family: cursive;
+        }
+        audio {
+            height: 50px;
+            margin: 10px 0;
+            padding: 5px;
+            background-color: transparent;
+            
+            border-radius: 10px;
+            
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(0.25turn, #e66465, #9198e5);
+            border-radius: 10px;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-volume-slider,
+        audio::-webkit-media-controls-timeline {
+            filter: none;
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            transition: transform 0.5s;
+            padding: 20px 20px 0 20px;
+        }
+        .lyric_line {
+            font-size: 20px;
+            transition: color 0.5s;
+            margin: 19px 0;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+        .highlight {
+            -webkit-text-fill-color: black;
+            transform: scale(1.1);
+            transition: 2s transform ease;
+        }
+        h1{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: rgba(221, 255, 0, 0.509);
+            width: 100%;;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pure HTML,CSS and Javacript</h1>
+    <div class="container">
+        <div class="content"></div>
+    </div>
+    <audio id="audio-player" controls>
+        <source src="/subahKiTrain.mp4" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const container = document.querySelector('.container');
+        const content = document.querySelector('.content');
+        const audioPlayer = document.getElementById('audio-player');
+        const lyrics = [
+            { time: 0, line: "Preet teri sar chadhi hai haule-haule" },
+            { time: 4, line: "Subah kee chaay mein adarak jaise ghole" },
+            { time: 9, line: "Sardi mein jaise dhup ka" },
+            { time: 12, line: "Yoon karoon tera intazaar" },
+            { time: 15, line: "Chaloon chaand pe ho tere sang savaar" },
+            { time: 21, line: "Subah kee train pyaar tera subah kee train" },
+            { time: 27, line: "Jaagoon saaree rain pyaar tera subah kee train" },
+            { time: 33, line: "---Project Link is in the description:)" }
+        ];
+
+        let currentIndex = 0;
+        let i = 0;
+
+        function createElement(text) {
+            const line = document.createElement('div');
+            line.textContent = text;
+            line.classList.add('lyric_line');
+            content.appendChild(line);
+        }
+
+        lyrics.forEach(lyric => createElement(lyric.line));
+
+        function updateLyrics() {
+            const lines = document.querySelectorAll('.lyric_line');
+            const currentTime = audioPlayer.currentTime;
+
+            while (currentIndex < lyrics.length && currentTime >= lyrics[currentIndex].time) {
+                if (currentIndex > 0) {
+                    lines[currentIndex - 1].classList.remove('highlight');
+                }
+                lines[currentIndex].classList.add('highlight');
+                content.style.transform = `translateY(-${currentIndex + 2 * i}cm)`;
+                currentIndex++;
+                i += 0.3;
+            }
+        }
+
+        audioPlayer.addEventListener('timeupdate', updateLyrics);
+    </script>
+</body>
+</html>

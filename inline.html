@@ -43,14 +43,14 @@
 
 <body>
     <div>
-    <h1>Hello, My name is Kavitha. I have made this effect with the radial-gradient <i class='bx bx-smile'></i></h1>
+    <h1>Hey! I have made this effect with the radial-gradient <i class='bx bx-smile'></i></h1>
     </div>
     <script>
         var timeout;
         document.body.addEventListener('mousemove', function (dets) {
             const x = dets.clientX / window.innerWidth * 100;
             const y = dets.clientY / window.innerHeight * 100;
-            document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, gold 1%, black 10%)`;
+            document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, gold 1%, black 15%)`;
 
             function mouseStopped() {
                 document.body.style.background = "black"
