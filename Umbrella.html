@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online HTML Editor</title>
+<style>
+    body,.container,.trainer,.overall{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .overall{
+        margin-bottom: 100px;
+    }
+    body{
+        height:100vh;
+        background:#000000;
+        /* background: radial-gradient(#000000, #0e0e0e); */
+    }
+    .Mount{
+        height:20px;
+        width:20px;
+        background:pink;
+        transform: translate(10px, -80px);
+        border-top-right-radius: 50px;
+        border-top-left-radius: 50px;
+        background:linear-gradient(to left top, #00BFFF, #FF69B4,#32CD32,#FFD700,#FF7F50,#FF4500,#800080);
+        animation:hue 2s linear infinite;
+    }
+    .Mount:before{
+        content:"";
+        position:absolute;
+        height:50px;
+        width:50px;
+        background:yellow;
+        transform: translate(-35px, 250px);
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+    }
+.Mount:after{
+        content:"";
+        position:absolute;
+        height:42px;
+        width:40px;
+        background:#000000;
+        transform: translate(-33px, 249px);
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        margin-left: 3px;
+    }
+    .container{
+        transform: rotate(180deg);
+        animation:rotate 2s linear infinite;
+    }
+    .Stick{
+        position:fixed;
+        transform: translate(12px, 45px);
+        height:230px;
+        width:3px;
+        background:linear-gradient(to left top, #00BFFF, #FF69B4,#32CD32,#FFD700,#FF7F50,#FF4500,#800080); 
+       animation:hue 2s linear infinite;
+    }
+    @keyframes hue{
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+    @keyframes rotate{
+        0%{
+            transform: translateZ(10px);
+        }
+        50%{
+           transform: translateZ(80px);
+        }
+        100%{
+           transform: translateZ(100px);
+        }
+    }
+    .circle{
+        position:fixed;
+        animation:move 3.5s linear infinite;
+        box-shadow:0 2px 30px 5px gray;
+        border-top-left-radius: 550px; 
+        border-top-right-radius: 550px;
+        width:350px;
+    }
+    .cr1{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:0.5s;
+        box-shadow:0 0 10px 2px #00BFFF;
+    }
+    .cr2{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:1s;
+        box-shadow:0 0 10px 2px #FF69B4;
+    }
+    .cr3{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:1.5s;
+        box-shadow:0 0 10px 2px #32CD32;
+    }
+    .cr4{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:2s;
+        box-shadow:0 0 10px 2px #FFD700;
+    }
+    .cr5{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:2.5s;
+         box-shadow:0 0 10px 2px #FF7F50;
+    }
+    .cr6{
+        height:140px;
+        /*width:20px;*/
+        border:1px solid white;
+        animation-delay:3s;
+        box-shadow:0 0 10px 2px #FF4500;
+    }
+    .cr7{
+        height:140px;
+        /*width:140px;*/
+        border:1px solid white;
+        animation-delay:3.5s;
+        box-shadow:0 0 10px 2px #800080;
+    }
+    @keyframes move{
+        25%{
+            transform:rotateY(90deg);
+        }
+        50%{
+           transform:rotateY(180deg); 
+        }
+        75%{
+           transform:rotateY(270deg); 
+        }
+        100%{
+           transform:rotateY(360deg); 
+        }
+    }
+    .text{
+        color: gray;
+        position: fixed;
+        top: 0;
+        margin-top: 30px;
+        font-size: 2.5rem;
+        text-align: center;
+        font-family:cursive;
+    }
+    /* stars */
+    .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff; /* Default color, will be overridden by JS */
+            animation: twinkle 1s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            50% {
+                opacity: 0;
+            }
+            75%{
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+</style>
+</head>
+<body>
+<div class="text">Welcome to a world of creativity and color!</div>
+<div class="overall">
+<div class="Mount"></div>
+<div class="container">
+    <div class="circle cr1"></div>
+    <div class="circle cr2"></div>
+    <div class="circle cr3"></div>
+    <div class="circle cr4"></div>
+    <div class="circle cr5"></div>
+    <div class="circle cr6"></div>
+    <div class="circle cr7"></div>
+</div>
+<div class="Stick"></div>
+<div class="stars"></div>
+</div>
+<script>
+        // Dynamically create stars with random colors
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+
+            for (let i = 0; i < 1000; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.height=`${Math.random()*2}px`;
+                star.style.width=`${Math.random()*2}px`;
+                setInterval(()=>{
+                    star.style.top = `${Math.random() * 100}vh`;
+                    star.style.left = `${Math.random() * 100}vw`;
+                },1000);
+                star.style.backgroundColor = getRandomColor();
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+   createStars();
+</script>
+</body>
+</html>
