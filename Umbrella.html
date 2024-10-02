@@ -3,13 +3,19 @@
 <head>
 <title>Online HTML Editor</title>
 <style>
-    body,.container,.trainer,.overall{
+    :root{
+        --1:#00BFFF;
+        --2:#FF69B4;
+        --3:#32CD32;
+        --4:#FFD700;
+        --5:#FF7F50;
+        --6:#FF4500;
+        --7:#800080;
+    }
+    body,.container,.trainer{
         display:flex;
         justify-content:center;
         align-items:center;
-    }
-    .overall{
-        margin-bottom: 100px;
     }
     body{
         height:100vh;
@@ -82,55 +88,68 @@
         border-top-left-radius: 550px; 
         border-top-right-radius: 550px;
         width:350px;
+        /* border:1px solid white; */
     }
+    .cr1::before,.cr2::before,.cr3::before,.cr4::before,.cr5::before,.cr6.cr1::before,.cr7.cr1::before{
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        bottom: 0;
+        border-radius: 50%;
+        transform: translate(-10px, 15px);
+    }
+    .cr1::after,.cr2::after,.cr3::after,.cr4::after,.cr5::after,.cr6.cr1::after,.cr7.cr1::after{
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+        transform: translate(10px, 15px);
+    }
+    .cr1::before,.cr1::after{background: var(--1);}
+    .cr2::before,.cr2::after{background: var(--2);}
+    .cr3::before,.cr3::after{background: var(--3);}
+    .cr4::before,.cr4::after{background: var(--4);}
+    .cr5::before,.cr5::after{background: var(--5);}
+    .cr6::before,.cr6::after{background: var(--6);}
+    .cr7::before,.cr7::after{background: var(--7);}
     .cr1{
-        height:140px;
-        /*width:140px;*/
-        border:1px solid white;
+        height:140px; 
         animation-delay:0.5s;
-        box-shadow:0 0 10px 2px #00BFFF;
+        box-shadow:0 0 10px 2px var(--1);
     }
     .cr2{
         height:140px;
-        /*width:140px;*/
-        border:1px solid white;
         animation-delay:1s;
-        box-shadow:0 0 10px 2px #FF69B4;
+        box-shadow:0 0 10px 2px var(--2);
     }
     .cr3{
         height:140px;
-        /*width:140px;*/
-        border:1px solid white;
         animation-delay:1.5s;
-        box-shadow:0 0 10px 2px #32CD32;
+        box-shadow:0 0 10px 2px var(--3);
     }
     .cr4{
         height:140px;
-        /*width:140px;*/
-        border:1px solid white;
         animation-delay:2s;
-        box-shadow:0 0 10px 2px #FFD700;
+        box-shadow:0 0 10px 2px var(--4);
     }
     .cr5{
         height:140px;
-        /*width:140px;*/
-        border:1px solid white;
         animation-delay:2.5s;
-         box-shadow:0 0 10px 2px #FF7F50;
+         box-shadow:0 0 10px 2px var(--5);
     }
     .cr6{
         height:140px;
-        /*width:20px;*/
-        border:1px solid white;
         animation-delay:3s;
-        box-shadow:0 0 10px 2px #FF4500;
+        box-shadow:0 0 10px 2px var(--6);
     }
     .cr7{
         height:140px;
-        /*width:140px;*/
-        border:1px solid white;
         animation-delay:3.5s;
-        box-shadow:0 0 10px 2px #800080;
+        box-shadow:0 0 10px 2px var(7);
     }
     @keyframes move{
         25%{
@@ -154,6 +173,7 @@
         font-size: 2.5rem;
         text-align: center;
         font-family:cursive;
+        z-index: 99;
     }
     /* stars */
     .stars {
@@ -165,7 +185,7 @@
         .star {
             position: absolute;
             border-radius: 50%;
-            background-color: #fff; /* Default color, will be overridden by JS */
+            background-color: #fff; 
             animation: twinkle 1s infinite alternate;
         }
 
@@ -183,8 +203,7 @@
 </style>
 </head>
 <body>
-<div class="text">Welcome to a world of creativity and color!</div>
-<div class="overall">
+<div class="text">Welcome to a world of creativity and color!<div>✨</div></div>
 <div class="Mount"></div>
 <div class="container">
     <div class="circle cr1"></div>
@@ -197,7 +216,6 @@
 </div>
 <div class="Stick"></div>
 <div class="stars"></div>
-</div>
 <script>
         // Dynamically create stars with random colors
         function createStars() {
@@ -227,6 +245,8 @@
             return color;
         }
    createStars();
+   //title: Unleash Creativity with a Colorful Umbrella Animation! ☂️🌈
+   //Watch as a vibrant umbrella comes to life with colorful animations against a starry backdrop! Check out the full code on GitHub: [Your GitHub Link Here].#ColorfulUmbrella #CreativeCoding #Animation"
 </script>
 </body>
 </html>
