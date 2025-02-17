@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lehriyeaaa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Itim&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url("https://e1.pxfuel.com/desktop-wallpaper/848/352/desktop-wallpaper-3d-dark.jpg");
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 80px 0px 5px 4px;
+        }
+
+        .text {
+            display: none;
+            opacity: 0;
+            text-align: center;
+            background: rgb(239, 15, 172);
+            color: rgb(239, 15, 172) !important;
+            font-size: 30px !important;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 0.5px;
+            font-family: "Itim", serif;
+            /* /how to scale */
+            transition: opacity 0.8s ease, transform 0.8s ease, background 0.8s ease;
+        }
+        .text::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            background: black;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            animation: widthchange var(--anim-duration, 4s) linear forwards;
+        }
+
+        @keyframes widthchange {
+            0% {
+                width: 100%;
+            }
+
+            100% {
+                width: 0%;
+            }
+        }
+
+        .line {
+            opacity: 0;
+            font-size: 20px;
+            color: rgb(239, 15, 172);
+            text-align: center;
+            font-family: "Itim", serif;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            display: none;
+            animation: showline 2s linear forwards;
+        }
+        @keyframes showline {
+            0% {
+                opacity: 0;
+                transform: translateY(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+        <div class="line">Eik tujhko hi bas dekh kar</div>
+        <div class="line">Bhooli mujhko hi meri nazar</div>
+        <div class="line">Tujhko shayad nahi hai khabar</div>
+        <div class="line">Tujhko jeete hain hum kis kadar</div>
+        <div class="line">Jurhe jo tere khawab se</div>
+        <div class="line">Toh toote hum neend se</div>
+        <div class="line">Yeh kaisa tera ishq hai, saajna?</div>
+        <div class="line">Tu haathon mein toh hai mere</div>
+        <div class="line">Hai kyun nahi laqeeron mein?</div>
+        <div class="line">Yeh kaisa tera ishq hai, saajna?</div>
+    
+    <script>
+        let times = [4,4,5,7,3,8,10,2,5,6]; // Different durations in seconds
+        let active = 0; // Start position
+        let maxWindow = 4; // Number of visible lines
+    
+        function loadShow() {
+            let items = document.querySelectorAll('.line');
+    
+            // Hide all elements first
+            items.forEach(item => {
+                // item.classList.add('line');
+                item.style.display = 'none';
+                item.classList.remove('text');
+                item.style.filter = 'none';       
+                item.style.transition = "filter 1s ease-in-out"; // Smooth blur transition
+            });
+    
+            // Show only `maxWindow` items at a time
+            for (let i = active; i < active + maxWindow && i < items.length; i++) {
+                items[i].style.display = 'block';
+    
+                // Apply blur effect smoothly to non-active lines
+                if (i !== active) {
+                    items[i].style.filter = 'blur(2px)';
+                }
+            }
+    
+            // Get current active line duration before updating active
+            let currentDuration = times[active]*1000;
+
+            // Add 'text' class to the active item
+            if (items[active]) {
+                items[active].classList.add('text');
+                // items[active].classList.remove('line');
+                let duration = times[active]+"s"; 
+                items[active].style.setProperty('--anim-duration',duration);
+            }
+    
+            //move the sliding window forwards
+            active = (active + 1) % items.length; 
+            
+            
+            // Use `setTimeout` dynamically instead of fixed `setInterval`
+            setTimeout(loadShow, currentDuration);
+        }
+    
+        // Start the first animation
+        loadShow();
+    </script>
+    
+</body>
+</html>
